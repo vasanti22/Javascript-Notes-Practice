@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call, Apply, Bind, Polifill</title>
+</head>
+<body>
+    <div>
+        <p>Call: With call(), an object can use a method belonging to another object. Arguments can be passed with comma separated values.</p>
+        <p>Apply: Same as call(), the only diffrence is extra arguments can be passed in an array. </p>
+        <p>Bind: With the bind() method, an object can borrow a method from another object.</p>
+        <p>Polyfill for Bind():
+            Polyfill is a way to change or add new features. It's basically code to add/modify the new features. It is used to provide modern functionality to web browsers. <br><br>
+            It is basically a code that provides modern functionality to web browsers. <br>
+            It is used to add/change new functionalities. <br><br>
+            It's like a browser fallback: if your browser doesn't provide the bind() function, you have to code your own bind() function. We will discuss polyfills for the following method <br>
+        </p>
+    </div>
+    
+    <script>
+        const person = {
+            firstName: "Vasanti",
+            lastName: "Pawar",
+        }
+        let fullName = function(city, state) {
+            console.log("My name is " + this.firstName + " " + this.lastName + " I am from " + city + ", " + state);
+        }
+        
+        fullName.call(person, "Nagpur", "Maharashtra");
+        //Output : Vasanti Pawar
+
+        const person1 = {
+            firstName: "Karan",
+            lastName: "Jain",
+        }
+
+        // function borrowing
+
+        fullName.call(person1, "Pune", "Maharashtra"); // extra arguments passed in comma separated values
+        fullName.apply(person1, ["Pune", "Maharashtra"]) // extra arguments passed in an array
+
+        const name = fullName.bind(person, "Nagpur", "Maharashtra"); // name can be invoked later;
+        console.log(name); // prints function
+        name(); 
+
+        // POLYFILL FOR BIND
+
+        
+
+        Function.prototype.myBind = function(...args) {
+            let obj = this,
+            parms = args.slice(1);
+            return function (...args2){
+                obj.apply(args[0],[...parms, ...args2]);
+            }
+        }
+        console.log("BIND POLYFILL")
+        const personName = fullName.myBind(person, "Pune", "Maharashtra");
+        personName();
+
+    </script>
+    
+</body>
+</html>
