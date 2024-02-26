@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currying</title>
+</head>
+<body>
+    
+    <ul>
+        <li>
+            Currying is a technique used in functional programming that allows you to transform a function with multiple arguments into a sequence of functions, each taking only one argument at a time
+        </li>
+        <li>It allows us to create specialized functions from a more generic one.</li> <br>
+        
+            <code>
+                function add(x) { <br>
+                    return function(y) { <br>
+                      return x + y; <br>
+                    }; <br>
+                  } <br>
+                  
+                  console.log(add(3)(4)); // Output: 7 <br>
+            </code>
+            <code>
+                const addOne = add(1); <br>
+                console.log(addOne(5)); // Output: 6 <br>
+                console.log(addOne(10)); // Output: 11 <br>
+            </code>
+        
+        <li>
+            Here, addOne is a new function derived from add that always adds 1 to its argument. We can reuse this function throughout our codebase without duplicating the logic.
+        </li>
+        <li>
+            With the curried version, we can chain function calls, passing one argument at a time. This improves code readability and allows for easy function composition:
+        </li>
+    </ul>
+    <script>
+        function multiply (x, y, z) {
+            return x * y * z;
+        }
+
+        console.log(multiply(2, 3, 4));
+
+        function multiplyCurrying (x) {
+            return function (y) {
+                return function (z) {
+                    return x * y * z;
+                }
+            }
+        }
+        console.log(multiplyCurrying(2)(3)(4));
+    </script>
+</body>
+</html>
+
+
