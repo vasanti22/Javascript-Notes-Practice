@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Me</title>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+.box-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 200px;
+    flex-wrap: wrap;
+}
+
+.box {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    cursor: pointer;
+    flex-basis: 30%;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+</style>    
+
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="inputNumber" placeholder="Enter a number between 1-9">
+        <button id="colorButton">Color me</button>
+        <div class="box-container">
+            <div class="box" id="box1">1</div>
+            <div class="box" id="box2">2</div>
+            <div class="box" id="box3">3</div>
+            <div class="box" id="box4">4</div>
+            <div class="box" id="box5">5</div>
+            <div class="box" id="box6">6</div>
+            <div class="box" id="box7">7</div>
+            <div class="box" id="box8">8</div>
+            <div class="box" id="box9">9</div>
+        </div>
+        <div id="errorMessage" class="error-message"></div>
+    </div>
+
+    <script>
+    document.getElementById('colorButton').addEventListener('click', function() {
+    var inputNumber = document.getElementById('inputNumber').value.trim();
+    var errorMessage = document.getElementById('errorMessage');
+    var boxId = 'box' + inputNumber;
+
+    // Check if input is a number between 1-9
+    if (/^[1-9]$/.test(inputNumber)) {
+        errorMessage.textContent = ''; // Clear error message
+
+        // Change background color of the corresponding box
+        var allBoxes = document.querySelectorAll('.box');
+        allBoxes.forEach(function(box) {
+            if (box.id === boxId) {
+                box.style.backgroundColor = 'green';
+            } else {
+                box.style.backgroundColor = 'white';
+            }
+        });
+    } else {
+        errorMessage.textContent = 'Please input a number between 1-9';
+    }
+});
+
+</script>
+
+</body>
+</html>
