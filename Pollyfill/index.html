@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pollyfill</title>
+</head>
+<body>
+    
+    <ul>
+        <li>
+            A polyfill is a piece of code (usually JavaScript on the Web) used to provide modern functionality on older browsers that do not natively support it.
+        </li>
+        
+        <li>
+            For example, a polyfill could be used to mimic the functionality of a text-shadow in IE7 using proprietary IE filters, <br/>
+            or mimic rem units or media queries by using JavaScript to dynamically adjust the styling as appropriate, <br/>
+            or whatever else you require.<br/>
+        </li>
+    </ul>
+    
+    <script>
+        //Example:
+        
+        const arr = [2, 3, 4, 1, 5];
+        
+        arr.forEach((element, index) => {
+            console.log(`Element: ${element}, Index: ${index}`);
+        });
+
+        //Pollyfill for forEach
+        
+        Array.prototype.myForEach = function(callback) {
+            for(let i = 0; i<=this.length - 1; i++) {
+                callback(this[i], i)
+            }
+        }
+
+        arr.myForEach((element, index) => {
+            console.log(`with pollyfill: Element: ${element}, Index: ${index}`);
+        })
+        
+        
+        
+    </script>
+    
+</body>
+</html>

@@ -14,7 +14,7 @@
             Polyfill is a way to change or add new features. It's basically code to add/modify the new features. It is used to provide modern functionality to web browsers. <br><br>
             It is basically a code that provides modern functionality to web browsers. <br>
             It is used to add/change new functionalities. <br><br>
-            It's like a browser fallback: if your browser doesn't provide the bind() function, you have to code your own bind() function. We will discuss polyfills for the following method <br>
+            It's like a browser fallback: if your browser doesn't provide the bind() function, you have to code your own bind() function.<br>
         </p>
     </div>
     
@@ -44,9 +44,9 @@
         console.log(name); // prints function
         name(); 
 
-        // POLYFILL FOR BIND
-
         
+        
+        // POLYFILL FOR BIND
 
         Function.prototype.myBind = function(...args) {
             let obj = this,
